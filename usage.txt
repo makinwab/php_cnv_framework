@@ -1,0 +1,73 @@
+When using the connverg framework the following steps are required
+
+1:	open the .htaccess file and change the RewriteBase command to the name of your folder
+	=> RewriteBase /Folder_name/ 
+
+2:	open the config file name config.php and set the parameters as it applies with your application
+	=> Directory Constants, Database connection constants, Hash keys
+
+	NB: you can define constants here that would or could be used later in your application
+
+After properly configuring the framework, its time to create models, views and controllers for your application
+
+	EXAMPLE APPLICATION: LOGIN SYSTEM
+
+1:	Create files - controllers/index.php , models/index_model.php, views/index/index.tpl
+	=> views(folder) / index(folder) / index.tpl(file)	
+	=> controllers(folder) / index.php(file)
+	=> models(folder) / index_model.php(file)
+
+	NB: you can change the names of the controllers folder, models folder,
+	    default file (i.e the ../index.php ) and the error file or 404 file () BUT ...
+		make sure it is set in ../index.php ( ../ means root folder ) 
+		i.e After this line of code
+		 			* $bootstrap = new Bootstrap(); *
+
+		 	place the following as it suits or is needed
+		 			* 
+
+		 			  $bootstrap->setControllerPath('controller_folder_name/'); 
+		 			  $bootstrap->setModelPath('model_folder_name/');
+    				  $bootstrap->setDefaultFile('default_file_name.php');
+    				  $bootstrap->setErrorFile('error_file_name.php');
+
+    				*
+
+ 2:	In controllers/index.php : (note: this file is a php class)
+ 		*
+ 			class Index extends Controller
+ 			{
+ 				public function __construct()
+ 				{
+ 					parent::__construct();
+ 				}
+
+ 				public function index()
+ 				{}
+ 			}
+ 		*
+ 		NB: The above code must necessarily be in your controllers for proper functioning
+ 			The index() represents your index module or index page
+ 			All controller classes must follow the above format, all must have an index module
+ 			Other methods can be added as needed by the application 
+ 			E.G public function logout(){}
+ 				public function register_user(){}
+
+ 				the example codes above represent some of the modules in the Login system / application
+
+ 3: In models/index_model.php : (note: this file is a php class)
+ 		*
+ 			a: class Index_Model extends userdao
+ 			{}
+
+ 			b: class Index_Model {}
+ 		*
+
+ 		NB: In 'a' "userdao" is a dataobject class and is used whem working with databases 
+ 			(check out DB_usage.txt)
+ 			
+ 			while in 'b' is used without 'userdao' when the module or page (in this case index page or login module) does not require database features or functionality.
+
+
+
+
